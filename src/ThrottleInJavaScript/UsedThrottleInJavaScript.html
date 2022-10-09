@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width" />
+  <title>JS Bin</title>
+</head>
+
+<body>
+  <button id="button">Add</button>
+  <script>
+                           //  Here throttle applied on Button.
+
+    var button = document.querySelector("#button");
+    const throttle = (func) => {
+      console.log(func);
+
+      //  Initially we set flag is true
+      let flag = true;
+      console.log(flag, "outer");
+
+      return function () {
+        console.log("fun");
+
+        const args = arguments;
+        const context = this;
+      //  here if flag is true then only execute the function. then set flag to false.
+      // now until the flag gets true,this function will not execute. so we set flag true inside setTimeout.
+
+        if (flag) {
+          func.apply(context, args);
+          flag = false;
+
+      // and here we set flag true inside setTimeout. after 1 sec the flag will gets true.
+          setTimeout(() => {
+            flag = true;
+          }, 1000);
+        }
+      };
+    };
+    let counter=0
+    const Handleclick = () => {
+      console.log("clicked",++counter);
+    };
+    button.addEventListener("click", throttle(Handleclick));
+  </script>
+</body>
+
+</html>
