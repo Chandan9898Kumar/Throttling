@@ -8,7 +8,10 @@ return(
     only the first click is executed immediately</label>
     
     <br /><br /><br /><br  />
+
     <NavLink to='/throttleLodash'>Throttle With Lodash</NavLink>
+    <br /><br /><br /><br  />
+    <NavLink to='/throttleWithFunction'>Throttle with function</NavLink>
 
     </>
 )
